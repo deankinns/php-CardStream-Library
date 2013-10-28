@@ -17,7 +17,7 @@ class CardStream
     public $direct_url = "https://gateway.cardstream.com/direct/";
 
     /**
-     * CardStream secet key, defined below is the test account details
+     * CardStream secret key, defined below is the test account details
      * please override this when moving from TEST to LIVE
      *
      * $api->secret = 'NewSecretStrongerThanThis';
@@ -34,31 +34,36 @@ class CardStream
      */
     public $secret = "Circle4Take40Idea";
 
-    function makeApiCall($url, $params, $verb = 'POST')
+
+    /**
+     * makes a request to the Cardstream Direct API
+     *
+     * @param $params
+     * @return array|bool
+     */
+    function makeApiCall($params)
     {
         $header = array(
             'http' => array(
-                'method' => $verb,
+                'method' => 'POST',
                 'ignore_errors' => true
             )
         );
         if ($params !== null && !empty($params)) {
             // check if signature has been provided if not, make it
-            if(!isset($params['signature'])){
+            if (!isset($params['signature'])) {
                 $params['signature'] = $this->signRequest($params);
             }
 
             $params = http_build_query($params);
-            if ($verb == 'POST') {
-                $header["http"]['header'] = 'Content-Type: application/x-www-form-urlencoded';
-                $header['http']['content'] = $params;
-            } else {
-                $url .= '?' . $params;
-            }
+
+            $header["http"]['header'] = 'Content-Type: application/x-www-form-urlencoded';
+            $header['http']['content'] = $params;
+
         }
 
         $context = stream_context_create($header);
-        $fp = fopen($url, 'rb', false, $context);
+        $fp = fopen($this->direct_url, 'rb', false, $context);
         if (!$fp) {
             $res = false;
         } else {
@@ -75,12 +80,18 @@ class CardStream
 
     }
 
-    function signRequest($sig_fields,$secret = null){
+    /**
+     * @param $sig_fields
+     * @param null $secret
+     * @return string
+     */
+    function signRequest($sig_fields, $secret = null)
+    {
 
-        if(is_array($sig_fields)){
+        if (is_array($sig_fields)) {
             ksort($sig_fields);
             $sig_fields = http_build_query($sig_fields) . ($secret === null ? $this->secret : $secret);
-        }else{
+        } else {
             $sig_fields .= ($secret === null ? $this->secret : $secret);
         }
 
