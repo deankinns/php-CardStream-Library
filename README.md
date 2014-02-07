@@ -93,3 +93,31 @@ Northampton' (length=50)
   'signature' => string '9e953da7e385135686920ca775e9e49dbb1ec6097c1b04dad3a4208a450f57f4f86e8c78b498ed5ff339dd5cfb76ea7b4cd68e04276c0bb0c386177fcc0292e8' (length=128)
   
 ```
+
+Using the Xref returned in the above response for future transactions
+
+```
+
+<?php
+	require 'cardstream.class.php';
+	
+  	$cardstream = new CardStream('Circle4Take40Idea');
+
+	 	$fields = array(
+		'action' => 'SALE',
+		'type' => 1,
+		"merchantID" => "100001",
+		"amount" => "1050",
+		"countryCode" => "826",
+		"currencyCode" => "826",
+		"transactionUnique" => "AZ2045-PY",
+		"orderRef" => "Groceries new transaction",
+		"xref" => '14020711KP29RJ21BZ50NVD'
+
+	);
+	
+  $res = $cardstream->makeApiCall($fields);
+
+  var_dump($res);
+
+```
