@@ -121,3 +121,61 @@ Using the Xref returned in the above response for future transactions
   var_dump($res);
 
 ```
+
+Response
+========
+
+```
+array (size=48)
+  'merchantID' => string '100001' (length=6)
+  'threeDSEnabled' => string 'N' (length=1)
+  'threeDSCheckPref' => string 'authenticated' (length=13)
+  'avscv2CheckEnabled' => string 'N' (length=1)
+  'addressCheckPref' => string 'matched' (length=7)
+  'postcodeCheckPref' => string 'matched' (length=7)
+  'customerID' => string '5' (length=1)
+  'eReceiptsEnabled' => string 'N' (length=1)
+  'eReceiptsStoreID' => string '1' (length=1)
+  'action' => string 'SALE' (length=4)
+  'type' => string '1' (length=1)
+  'amount' => string '1050' (length=4)
+  'countryCode' => string '826' (length=3)
+  'currencyCode' => string '826' (length=3)
+  'transactionUnique' => string 'AZ2045-PY' (length=9)
+  'orderRef' => string 'Groceries' (length=9)
+  'merchantAlias' => string '100001' (length=6)
+  'responseCode' => string '0' (length=1)
+  'responseMessage' => string 'AUTHCODE:271372' (length=15)
+  'state' => string 'accepted' (length=8)
+  'remoteAddress' => string '82.153.91.208' (length=13)
+  'cardNumberMask' => string '************0821' (length=16)
+  'customerName' => string 'Mr PHP Test' (length=11)
+  'customerAddress' => string 'Flat 6
+Primrose Rise
+347 Lavender Road
+Northampton' (length=50)
+  'customerPostcode' => string 'NN17 8YG' (length=8)
+  'customerPhone' => string '0845 00 99 575' (length=14)
+  'customerEmail' => string 'support@cardstream.com' (length=22)
+  'previousID' => string '6310462' (length=7)
+  'xref' => string '14020712QS33TG46MX40GHQ' (length=23)
+  'cardExpiryDate' => string '1215' (length=4)
+  'authorisationCode' => string '271372' (length=6)
+  'transactionID' => string '6310811' (length=7)
+  'timestamp' => string '2014-02-07 12:33:46' (length=19)
+  'amountReceived' => string '1050' (length=4)
+  'avscv2ResponseCode' => string '422100' (length=6)
+  'avscv2ResponseMessage' => string 'ADDRESS MATCH ONLY' (length=18)
+  'avscv2AuthEntity' => string 'merchant host' (length=13)
+  'cv2Check' => string 'not matched' (length=11)
+  'addressCheck' => string 'matched' (length=7)
+  'postcodeCheck' => string 'matched' (length=7)
+  'cardTypeCode' => string 'VC' (length=2)
+  'cardType' => string 'Visa Credit' (length=11)
+  'currencyExponent' => string '2' (length=1)
+  'settledTimestamp' => string '2014-02-07 12:33:46' (length=19)
+  'responseStatus' => string '0' (length=1)
+  'merchantName' => string 'CARDSTREAM TEST' (length=15)
+  'merchantID2' => string '100001' (length=6)
+  'signature' => string 'a114c25f4509ca65d9286e236ba4239cb5c7094781d77012ef4b1f08cb42ad42d7b4422af1a0da41a9b84e8b61da5435325311c0b859384e768e5a626bdd2d99' (length=128)
+```
