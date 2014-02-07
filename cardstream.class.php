@@ -32,8 +32,12 @@ class CardStream
      *
      * @var string
      */
-    public $secret = "Circle4Take40Idea";
+    public $secret = "";
 
+
+    public function __construct($secret = "Circle4Take40Idea"){
+        $this->secret = $secret;
+    }
 
     /**
      * makes a request to the Cardstream Direct API
@@ -55,7 +59,7 @@ class CardStream
                 $params['signature'] = $this->signRequest($params);
             }
 
-            $params = http_build_query($params);
+            $params = http_build_query($params, '', '&');
 
             $header["http"]['header'] = 'Content-Type: application/x-www-form-urlencoded';
             $header['http']['content'] = $params;
@@ -90,7 +94,7 @@ class CardStream
 
         if (is_array($sig_fields)) {
             ksort($sig_fields);
-            $sig_fields = http_build_query($sig_fields) . ($secret === null ? $this->secret : $secret);
+            $sig_fields = http_build_query($sig_fields, '', '&') . ($secret === null ? $this->secret : $secret);
         } else {
             $sig_fields .= ($secret === null ? $this->secret : $secret);
         }
