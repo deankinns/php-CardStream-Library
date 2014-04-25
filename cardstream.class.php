@@ -115,7 +115,7 @@
 
 			if ( is_array( $value ) ) {
 				foreach ( $value as $lkey => $lvalue ) {
-					$op .= print_input( $key . '[' . $lkey . ']', $lvalue );
+					$op .= $this->print_input( $key . '[' . $lkey . ']', $lvalue );
 				}
 				// if the value is blank, dont put in in the form
 			} elseif ( empty( $tvalue ) ) {
@@ -157,10 +157,10 @@
 			$op = "<form action=\"{$this->form_url}\" method=\"post\">";
 
 			foreach ( $fields as $field => $value ) {
-				$op .= print_input( $field, $value );
+				$op .= $this->print_input( $field, $value );
 			}
 
-			$op .= '<input type="hidden" name="signature" value="' . signature( $fields, $pre_shared_key ) . '" />\n';
+			$op .= '<input type="hidden" name="signature" value="' . $this->signature( $fields, $pre_shared_key ) . '" />\n';
 			$op .= '<input type="submit" name="submit" value="Pay Now" /></form>';
 
 
