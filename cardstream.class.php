@@ -98,6 +98,9 @@
 				$sig_fields .= ( $secret === null ? $this->secret : $secret );
 			}
 
+			// Normalise all line endings (CRNL|NLCR|NL|CR) to just NL (%0A)
+			$sig_fields = preg_replace('/%0D%0A|%0A%0D|%0A|%0D/i', '%0A', $sig_fields);
+
 			return hash( 'SHA512', $sig_fields );
 
 		}
