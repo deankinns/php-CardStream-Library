@@ -163,8 +163,8 @@
 				$op .= $this->print_input( $field, $value );
 			}
 
-			$op .= '<input type="hidden" name="signature" value="' . $this->signature( $fields, $pre_shared_key ) . '" />\n';
-			$op .= '<input type="submit" name="submit" value="Pay Now" /></form>';
+			$op .= '<input type="hidden" name="signature" value="' . $this->form_signature( $fields, $pre_shared_key ) . '" />\n';
+			$op .= '<input type="submit" value="Pay Now" /></form>';
 
 
 			return $op;
